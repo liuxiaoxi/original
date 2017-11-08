@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="spider-web:war">
+    <output-path>$PROJECT_DIR$/spider-web/target</output-path>
+    <root id="archive" name="spider-web-1.0.0.war">
+      <element id="artifact" artifact-name="spider-web:war exploded" />
+    </root>
+  </artifact>
+</component>

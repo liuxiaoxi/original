@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spider-common/spider-common.iml" filepath="$PROJECT_DIR$/spider-common/spider-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spider-dao/spider-dao.iml" filepath="$PROJECT_DIR$/spider-dao/spider-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spider-model/spider-model.iml" filepath="$PROJECT_DIR$/spider-model/spider-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spider-rpc/spider-rpc.iml" filepath="$PROJECT_DIR$/spider-rpc/spider-rpc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spider-service/spider-service.iml" filepath="$PROJECT_DIR$/spider-service/spider-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spider-web/spider-web.iml" filepath="$PROJECT_DIR$/spider-web/spider-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spiderMan.iml" filepath="$PROJECT_DIR$/spiderMan.iml" />
+    </modules>
+  </component>
+</project>
