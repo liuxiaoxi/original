@@ -1,7 +1,7 @@
-package com.orginal.exception;
+package com.fanqie.common.exception;
 
 
-import com.orginal.core.ResultCode;
+import com.fanqie.common.core.ResultCode;
 
 /**
  * 公用业务异常

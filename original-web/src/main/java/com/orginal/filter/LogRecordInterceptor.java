@@ -1,5 +1,9 @@
-package com.orginal.filter;
+package com.fanqie.oms.web.filter;
 
+/**
+ * Created by LZQ
+ * on 2015/9/24.
+ */
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- *@author lxx
+ * 日志拦截器，记录请求参数
  */
 public class LogRecordInterceptor extends HandlerInterceptorAdapter {
 
@@ -21,6 +25,7 @@ public class LogRecordInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		//response.setHeader("Access-Control-Allow-Origin", "*");
 		long startTimeValue = System.currentTimeMillis();
 		request.setAttribute("startTimeValue",startTimeValue);
 		try {

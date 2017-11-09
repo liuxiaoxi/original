@@ -1,4 +1,4 @@
-package com.orginal.core;
+package com.fanqie.common.core;
 
 import java.io.Serializable;
 

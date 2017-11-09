@@ -1,7 +1,6 @@
-package com.orginal.exception;
+package com.fanqie.common.exception;
 
-
-import com.orginal.core.ResultCode;
+import com.fanqie.common.core.ResultCode;
 
 /**
  * 统一系统异常

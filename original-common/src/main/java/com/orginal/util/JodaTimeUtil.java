@@ -1,6 +1,12 @@
-package com.orginal.util;
+package com.fanqie.oms.util;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
+import com.fanqie.oms.exception.DateValideteException;
+import com.fanqie.oms.exception.OmsRunTimeException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.joda.time.DateTime;
@@ -8,11 +14,6 @@ import org.joda.time.Period;
 import org.joda.time.PeriodType;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 /**
  * @author lei
@@ -55,7 +56,7 @@ public class JodaTimeUtil {
      */
     public static final String FORMAT_DATE_STR_SECOND_FILE_NAME = "yyyy-MM-dd-HH-mm-ss";
 
-    public static final org.joda.time.format.DateTimeFormatter SIMPLE_STR = DateTimeFormat.forPattern(FORMAT_DATE_STR);
+    public static final DateTimeFormatter simple_str = DateTimeFormat.forPattern(FORMAT_DATE_STR);
 
     private static final String HTTP_HEADER_TIME_ZONE = "GMT";
     private static final String HTTP_HEADER_DATE_FORMAT = "EEE', 'dd' 'MMM' 'yyyy' 'HH:mm:ss' 'z";
@@ -103,7 +104,7 @@ public class JodaTimeUtil {
     }
 
     public static Date parse(String date, String pattern) {
-        org.joda.time.format.DateTimeFormatter dtf = DateTimeFormat.forPattern(pattern);
+        DateTimeFormatter dtf = DateTimeFormat.forPattern(pattern);
         return DateTime.parse(date, dtf).toDate();
     }
 
@@ -121,7 +122,7 @@ public class JodaTimeUtil {
      */
     public static String format(Date date) {
         DateTime dateTime = new DateTime(date);
-        return dateTime.toString(SIMPLE_STR);
+        return dateTime.toString(simple_str);
     }
 
     /**
@@ -130,11 +131,11 @@ public class JodaTimeUtil {
      * @return
      */
     public static String format(String str){
-        Date date = null;
+        Date date ;
         try {
             date = DateUtils.parseDate(str, FORMAT_DATE_STR, FORMAT_DATE_STR_ONE, FORMAT_DATE_STR_SECOND, FORMAT_DATE_STR_LONG);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ParseException e) {
+            throw new OmsRunTimeException("时间格式转换异常");
         }
         String format = format(date);
         return format;
@@ -147,7 +148,7 @@ public class JodaTimeUtil {
      * @return 返回默认格式"yyyy-MM-dd"的字符串
      */
     public static String format(DateTime dateTime) {
-        return dateTime.toString(SIMPLE_STR);
+        return dateTime.toString(simple_str);
     }
 
     /**
@@ -157,7 +158,7 @@ public class JodaTimeUtil {
      */
     public static String format(Date date, String format) {
         DateTime dateTime = new DateTime(date);
-        org.joda.time.format.DateTimeFormatter dtf = DateTimeFormat.forPattern(format);
+        DateTimeFormatter dtf = DateTimeFormat.forPattern(format);
         return dateTime.toString(dtf);
     }
 
@@ -169,11 +170,10 @@ public class JodaTimeUtil {
      * @return yyyy-MM-dd"的字符串
      */
     public static String addDay(String date, int i) {
-        if (i == 0){
+        if (i == 0)
             return date;
-        }
         DateTime dateTime = DateTime.parse(date);
-        return dateTime.plusDays(i).toString(SIMPLE_STR);
+        return dateTime.plusDays(i).toString(simple_str);
     }
 
     /**
@@ -185,9 +185,8 @@ public class JodaTimeUtil {
      * @return
      */
     public static String addDay(String date, int i, String format) {
-        if (i == 0){
+        if (i == 0)
             return date;
-        }
         DateTimeFormatter dtf = DateTimeFormat.forPattern(format);
         DateTime dateTime = DateTime.parse(date);
         return dateTime.plusDays(i).toString(dtf);
@@ -214,14 +213,36 @@ public class JodaTimeUtil {
      * @return
      */
     public static int getDifferDay(String date1, String date2) {
-        DateTime dateTimeTemp1 = DateTime.parse(date1);
-        DateTime dateTimeTemp2= DateTime.parse(date2);
-        Period p = new Period(dateTimeTemp1, dateTimeTemp2, PeriodType.days());
+        DateTime dateTime1_tmp = DateTime.parse(date1);
+        DateTime dateTime2_tmp = DateTime.parse(date2);
+        Period p = new Period(dateTime1_tmp, dateTime2_tmp, PeriodType.days());
         int days = p.getDays();
         return Math.abs(days);
     }
 
-
+    /**
+     * 通过开始日期和结束日期，返回这期间内日期的集合
+     *
+     * @param date1
+     * @param date2
+     * @return
+     */
+    public static List<String> getAllDaysByDifferDay(String date1, String date2) throws DateValideteException {
+        List<String> result = new ArrayList<>();
+        if(!CommonUtil.isDate(date1)){
+            throw new DateValideteException(date1);
+        } if(!CommonUtil.isDate(date2)){
+            throw new DateValideteException(date2);
+        }
+        if(!JodaTimeUtil.leCompareDate(date1,date2)){
+            throw new DateValideteException(date1,date2);
+        }
+        int differs = getDifferDay(date1, date2);
+        for (int i = 0; i <= differs; i++) {
+            result.add(addDay(date1, i));
+        }
+        return result;
+    }
 
     /**
      * 判断当前天是星期几

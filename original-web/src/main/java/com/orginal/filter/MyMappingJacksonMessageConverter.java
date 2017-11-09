@@ -1,4 +1,4 @@
-package com.orginal.filter;
+package com.fanqie.oms.web.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -14,7 +14,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- *@author lxx
+ * jackson 返回日志记录
+ * Created by LZQ
+ * on 2016/10/13.
  */
 public class MyMappingJacksonMessageConverter extends MappingJackson2HttpMessageConverter {
     private List<String> excludeUrl;
@@ -36,7 +38,7 @@ public class MyMappingJacksonMessageConverter extends MappingJackson2HttpMessage
                 long endTimeValue = System.currentTimeMillis();
                 time = endTimeValue-startTimeValue;
             }
-            log.info("[<--返回][url={}][totalTime={}ms][[data={}]",request.getServletPath(),time, JSON.toJSONString(object));
+            log.info("[<--返回][url={}][totalTime={}ms][[data={}]",request.getServletPath(),time,JSON.toJSONString(object));
         }
         super.writeSuffix(generator, object);
     }

@@ -1,13 +1,15 @@
-package com.orginal.mapper;
+package com.fanqie.common.mapper;
 
 import org.dozer.DozerBeanMapper;
 
 import java.util.*;
 
+import static javafx.scene.input.KeyCode.K;
+
 /**
- * @author lxx
+ * @Author Zemo Chen
  * @Date: 2016/11/8 15:01
- * @Email: sking66@163.com
+ * @Email: chenzeming@fanqielaile.com
  * @Description:* 简单封装Dozer, 实现深度转换Bean<->Bean的Mapper,参数名一样自动映射,参数名不一样需要在xml里声明映射关系.实现:
  *                  1. 持有Mapper的单例.
  *                  2. 返回值类型转换.
@@ -19,7 +21,7 @@ public class BeanMapper {
     /**
      * 持有Dozer单例, 避免重复创建DozerMapper消耗资源.
      */
-    private static final DozerBeanMapper DOZER = new DozerBeanMapper(Arrays.asList(new String[]{"dozer/oms-dozer-mapping.xml"}));
+    private static final DozerBeanMapper dozer = new DozerBeanMapper(Arrays.asList(new String[]{"dozer/oms-dozer-mapping.xml"}));
 
     /**
      * 基于Dozer转换对象的类型.
@@ -28,7 +30,7 @@ public class BeanMapper {
      * @return
      */
     public static <T> T map(Object source, Class<T> destinationClass) {
-        return DOZER.map(source, destinationClass);
+        return dozer.map(source, destinationClass);
     }
 
     /**
@@ -40,7 +42,7 @@ public class BeanMapper {
     public static <T> List<T> mapList(Collection sourceList, Class<T> destinationClass) {
         List<T> destinationList = new ArrayList<>();
         for (Object sourceObject : sourceList) {
-            T destinationObject = DOZER.map(sourceObject, destinationClass);
+            T destinationObject = dozer.map(sourceObject, destinationClass);
             destinationList.add(destinationObject);
         }
         return destinationList;
@@ -74,7 +76,7 @@ public class BeanMapper {
     public static <K,T> Map<K,T> mapHashMap(Map sourceMap, Class<T> destinationClass) {
         Map<K,T> destinationMap = new HashMap<>();
         for (Object o : sourceMap.keySet()) {
-            T destinationObject = DOZER.map(sourceMap.get(o), destinationClass);
+            T destinationObject = dozer.map(sourceMap.get(o), destinationClass);
             K destinationKey = (K) o;
             destinationMap.put(destinationKey,destinationObject);
         }
@@ -84,7 +86,7 @@ public class BeanMapper {
      * 基于Dozer将对象A的值拷贝到对象B中.
      */
     public static void copy(Object source, Object destinationObject) {
-        DOZER.map(source, destinationObject);
+        dozer.map(source, destinationObject);
     }
 }
 
