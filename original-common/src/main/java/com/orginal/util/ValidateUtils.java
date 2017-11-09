@@ -1,13 +1,15 @@
-package com.util;
+package com.orginal.util;
 
-import com.fanqie.common.core.ACK;
-import com.fanqie.common.exception.BusinessException;
+
+
+import com.orginal.core.ACK;
+import com.orginal.exception.BusinessException;
 
 import java.util.List;
 
 /**
  * 参数校验工具类
- * @author lizq
+ * @author lxx
  * @date 2016年2月4日
  */
 public class ValidateUtils {
@@ -30,7 +32,7 @@ public class ValidateUtils {
 	 * @param message
 	 */
 	public static void validateString(String str,String message){
-		if(str == null || str.equals("")){
+		if(str == null || "".equals(str)){
 			throw new BusinessException(ACK.PARAM_ERROR,message);
 		}
 	}

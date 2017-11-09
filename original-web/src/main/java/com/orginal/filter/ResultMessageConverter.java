@@ -1,15 +1,12 @@
-package com.fanqie.oms.web.filter;
+package com.orginal.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.fanqie.common.core.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.AbstractHttpMessageConverter;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -20,11 +17,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import com.orginal.core.Result;
 
 /**
- * Created by LZQ
- * Date: 2016/11/17
- * Time: 17:22
+ * @author lxx
+ * @param <T>
  */
 public class ResultMessageConverter<T> extends AbstractHttpMessageConverter<T> {
     private List<String> excludeUrl;
@@ -38,6 +35,7 @@ public class ResultMessageConverter<T> extends AbstractHttpMessageConverter<T> {
     protected T readInternal(Class<? extends T> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
         return null;
     }
+
 
     @Override
     protected void writeInternal(T t, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
@@ -56,8 +54,9 @@ public class ResultMessageConverter<T> extends AbstractHttpMessageConverter<T> {
                 }else if (t instanceof Map){
                     Map map = (Map) t;
                     log.info("[<--返回][url={}][totalTime={}ms][status={}][msg={}][data={}]",request.getServletPath(),time,map.get("status"),map.get("message"),toJSONString(map));
-                }else
+                }else{
                     log.info("[<--返回][url={}][totalTime={}ms][[data={}]",request.getServletPath(),time,toJSONString(t));
+                }
             }
 
         }

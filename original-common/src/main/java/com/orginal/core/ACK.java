@@ -1,4 +1,4 @@
-package com.fanqie.common.core;
+package com.orginal.core;
 /**
  * 系统ACK 统一规定
  * 系统ACK统一为6位  000000 表示成功 和   99开头表示系统级别错误 都表示所以公用     

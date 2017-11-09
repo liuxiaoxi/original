@@ -6,6 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="original-common" />
+        <module name="original-dao" />
+        <module name="original-model" />
+        <module name="original-rpc" />
+        <module name="original-service" />
+        <module name="original-web" />
         <module name="spider-common" />
         <module name="spider-dao" />
         <module name="spider-model" />
@@ -15,6 +21,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="original" target="1.8" />
+      <module name="original-common" target="1.8" />
+      <module name="original-dao" target="1.8" />
+      <module name="original-model" target="1.8" />
+      <module name="original-rpc" target="1.8" />
+      <module name="original-service" target="1.8" />
+      <module name="original-web" target="1.8" />
       <module name="spider-common" target="1.5" />
       <module name="spider-dao" target="1.8" />
       <module name="spider-model" target="1.8" />

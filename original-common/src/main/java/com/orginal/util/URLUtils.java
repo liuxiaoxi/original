@@ -1,4 +1,4 @@
-package com.util;
+package com.orginal.util;
 
 import javax.servlet.http.HttpServletRequest;
 

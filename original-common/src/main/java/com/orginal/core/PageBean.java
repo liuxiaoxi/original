@@ -1,4 +1,4 @@
-package com.fanqie.common.core;
+package com.orginal.core;
 
 /**
  * Created by huangjie on 17/2/15.

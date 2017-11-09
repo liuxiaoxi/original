@@ -2,6 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/original.iml" filepath="$PROJECT_DIR$/original.iml" />
+      <module fileurl="file://$PROJECT_DIR$/original-common/original-common.iml" filepath="$PROJECT_DIR$/original-common/original-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/original-dao/original-dao.iml" filepath="$PROJECT_DIR$/original-dao/original-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/original-model/original-model.iml" filepath="$PROJECT_DIR$/original-model/original-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/original-rpc/original-rpc.iml" filepath="$PROJECT_DIR$/original-rpc/original-rpc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/original-service/original-service.iml" filepath="$PROJECT_DIR$/original-service/original-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/original-web/original-web.iml" filepath="$PROJECT_DIR$/original-web/original-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/spider-common/spider-common.iml" filepath="$PROJECT_DIR$/spider-common/spider-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/spider-dao/spider-dao.iml" filepath="$PROJECT_DIR$/spider-dao/spider-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/spider-model/spider-model.iml" filepath="$PROJECT_DIR$/spider-model/spider-model.iml" />
